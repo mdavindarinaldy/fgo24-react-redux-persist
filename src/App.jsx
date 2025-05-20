@@ -1,22 +1,21 @@
-import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import HomePage from './pages/HomePage'
-import ArticlePage from './pages/ArticlePage'
-
-const router = createBrowserRouter ([
-  {
-    path: '/',
-    element: <HomePage/>
-  }, {
-    path: '/@:username/:slug',
-    element: <ArticlePage/>
-  }
-])
+import React, { useState } from 'react'
+import Input from './components/Input'
+// import ToDoItem from './components/ToDoItem'
+import { TextContext } from './components/TextContext.js'
+import ToDoList from './components/ToDoList.jsx'
 
 function App() {
+  const [val, setVal] = useState({result:''})
+
   return (
-    <div>
-      <RouterProvider router={router}/>
+    <div className='m-10 py-10 flex flex-col justify-start items-center w-[60svw] h-[90svh] bg-white rounded-3xl'>
+        <TextContext value={`${val.result}`}>
+          <div className='flex flex-col justify-start items-center gap-5 h-full'>            
+            <span className='text-center text-4xl font-bold'>To Do List</span>
+            <Input onSubmit={setVal}/>
+            <ToDoList/>
+          </div>
+        </TextContext>
     </div>
   )
 }
