@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux'
 import { addTask } from '../redux/reducer/todos'
 
 function Input() {
-  const {register, handleSubmit} = useForm()
+  const {register, handleSubmit, reset} = useForm()
   const dispatch = useDispatch()
 
   function submitData(value) {
     dispatch(addTask(value))
-    document.getElementById('form').reset()
+    reset()
   }
 
   return (

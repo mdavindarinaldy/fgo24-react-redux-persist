@@ -4,12 +4,12 @@ import storage from 'redux-persist/lib/storage'
 import { persistReducer } from "redux-persist";
 
 const persistConfig = {
-    key: "tasks",
+    key: "data",
     storage
 }
 
 const reducer = combineReducers({
-    tasks: persistReducer(persistConfig, todos),
+    data: persistReducer(persistConfig, todos),
 })
 
 export default reducer
