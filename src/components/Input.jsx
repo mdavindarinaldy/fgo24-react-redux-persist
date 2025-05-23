@@ -1,16 +1,19 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import ToDoItem from './ToDoItem'
+import { useDispatch } from 'react-redux'
+import { addTask } from '../redux/reducer/todos'
 
-function Input({onSubmit}) {
+function Input() {
   const {register, handleSubmit} = useForm()
+  const dispatch = useDispatch()
 
   function submitData(value) {
-    onSubmit(value)
+    dispatch(addTask(value))
+    document.getElementById('form').reset()
   }
 
   return (
-    <form onSubmit={handleSubmit(submitData)} className='flex flex-row px-5 py-2 justify-start items-center border-1 border-gray-400 rounded-3xl w-[50svw]'>
+    <form id='form' onSubmit={handleSubmit(submitData)} className='flex flex-row px-5 py-2 justify-start items-center border-1 border-gray-400 rounded-3xl w-[50svw]'>
         <input {...register('result')} type="text" placeholder='What Do You Want To Do?' className='outline-0 flex-1'/>
     </form>
   )
